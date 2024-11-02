@@ -1,4 +1,7 @@
 package com.ankursinha.springbootrest.dto;
 
-public record CustomerResponse() {
-}
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public record CustomerResponse(
+        String message
+) {}
