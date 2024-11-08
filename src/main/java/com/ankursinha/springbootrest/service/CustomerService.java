@@ -2,8 +2,6 @@ package com.ankursinha.springbootrest.service;
 
 import com.ankursinha.springbootrest.dto.CustomerRequest;
 import com.ankursinha.springbootrest.dto.CustomerResponse;
-import com.ankursinha.springbootrest.dto.LoginRequest;
-import com.ankursinha.springbootrest.dto.LoginResponse;
 import com.ankursinha.springbootrest.entity.Customer;
 import com.ankursinha.springbootrest.exception.CustomerNotFoundException;
 import com.ankursinha.springbootrest.mapper.CustomerMapper;
@@ -35,15 +33,5 @@ public class CustomerService {
                         format("Cannot update Customer:: No customer found with the provided ID:: %s", email)
                 ));
         return mapper.toDto(customer);
-    }
-
-    public LoginResponse login(LoginRequest request) {
-        Optional<Customer> customerOpt = repo.findByEmail(request.email());
-
-        if (customerOpt.isPresent() && customerOpt.get().getPassword().equals(request.password())) {
-            return new LoginResponse("Login successful");
-        } else {
-            throw new RuntimeException("Invalid email or password");
-        }
     }
 }
