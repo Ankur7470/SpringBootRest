@@ -20,10 +20,10 @@ public class CustomerService {
     private final CustomerRepo repo;
     private final CustomerMapper mapper;
 
-    public String createCustomer(CustomerRequest request) {
+    public CustomerResponse createCustomer(CustomerRequest request) {
         Customer customer = mapper.toEntity(request);
-        repo.save(customer);
-        return "Customer Created";
+        Customer savedCustomer = repo.save(customer);
+        return mapper.toDto(savedCustomer);
     }
 
     public LoginResponse login(LoginRequest request) {
