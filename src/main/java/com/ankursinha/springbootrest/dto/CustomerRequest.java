@@ -24,4 +24,5 @@ public record CustomerRequest(
         @Size(min = 6, max = 12)
         @JsonProperty("password")
         String password
-) {}
+) {
+}
