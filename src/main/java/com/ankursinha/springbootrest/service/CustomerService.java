@@ -34,4 +34,25 @@ public class CustomerService {
                 ));
         return mapper.toDto(customer);
     }
+
+    public CustomerResponse updateCustomer(Long id, CustomerRequest request) {
+        Customer existingCustomer = repo.findById(id)
+                .orElseThrow(() -> new CustomerNotFoundException("Customer not found with ID: " + id));
+
+        // Update fields (excluding email and password)
+        existingCustomer.setFirstName(request.firstName());
+        existingCustomer.setLastName(request.lastName());
+        existingCustomer.setEmail(request.email());
+        existingCustomer.setPassword(request.password());
+
+        Customer updatedCustomer = repo.save(existingCustomer);
+        return mapper.toDto(updatedCustomer);
+    }
+
+    public String deleteCustomer(Long id) {
+        Customer customer = repo.findById(id)
+                .orElseThrow(() -> new CustomerNotFoundException("Customer not found with ID: " + id));
+        repo.delete(customer);
+        return "Customer with ID: " + id + " deleted successfully.";
+    }
 }
