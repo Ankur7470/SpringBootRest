@@ -17,15 +17,16 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    @PostMapping("/create")
-    public ResponseEntity<String> createCustomer(@RequestBody @Valid CustomerRequest request) {
-        return ResponseEntity.ok(customerService.createCustomer(request));
-    }
-
     @GetMapping("/test")
     public ResponseEntity<String> testEndpoint() {
         System.out.println("Test endpoint hit!");
         return ResponseEntity.ok("Test successful!");
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<CustomerResponse> createCustomer(@RequestBody @Valid CustomerRequest request) {
+        CustomerResponse response = customerService.createCustomer(request);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/login")
