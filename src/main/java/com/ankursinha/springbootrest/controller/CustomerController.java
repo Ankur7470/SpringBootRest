@@ -2,8 +2,6 @@ package com.ankursinha.springbootrest.controller;
 
 import com.ankursinha.springbootrest.dto.CustomerRequest;
 import com.ankursinha.springbootrest.dto.CustomerResponse;
-import com.ankursinha.springbootrest.dto.LoginRequest;
-import com.ankursinha.springbootrest.dto.LoginResponse;
 import com.ankursinha.springbootrest.service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,12 +24,6 @@ public class CustomerController {
     @PostMapping("/create")
     public ResponseEntity<CustomerResponse> createCustomer(@RequestBody @Valid CustomerRequest request) {
         CustomerResponse response = customerService.createCustomer(request);
-        return ResponseEntity.ok(response);
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginRequest request) {
-        LoginResponse response = customerService.login(request);
         return ResponseEntity.ok(response);
     }
 }
