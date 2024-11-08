@@ -2,7 +2,7 @@ package com.ankursinha.springbootrest.controller;
 
 import com.ankursinha.springbootrest.dto.LoginRequest;
 import com.ankursinha.springbootrest.dto.LoginResponse;
-import com.ankursinha.springbootrest.service.CustomerService;
+import com.ankursinha.springbootrest.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 
 public class AuthController {
-
-    private final CustomerService customerService;
+    private final AuthService authService;
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginRequest request) {
-        LoginResponse response = customerService.login(request);
+        LoginResponse response = authService.login(request);
         return ResponseEntity.ok(response);
     }
 }
