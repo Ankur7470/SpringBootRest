@@ -26,4 +26,10 @@ public class CustomerController {
         CustomerResponse response = customerService.createCustomer(request);
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/{email}")
+    public ResponseEntity<CustomerResponse> getCustomer(@PathVariable("email") String email) {
+        CustomerResponse response = customerService.retrieveCustomer(email);
+        return ResponseEntity.ok(response);
+    }
 }
