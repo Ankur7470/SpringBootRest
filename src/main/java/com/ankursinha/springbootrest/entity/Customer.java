@@ -11,7 +11,7 @@ import jakarta.persistence.*;
 @Table(name = "customer")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "first_name", nullable = false)
@@ -24,5 +24,5 @@ public class Customer {
     private String email;
 
     @Column(name = "password", nullable = false)
-    private String password; // Store hashed passwords!
+    private String password;
 }
