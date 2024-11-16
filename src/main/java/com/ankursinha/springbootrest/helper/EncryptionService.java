@@ -8,13 +8,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class EncryptionService {
-    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
 
     public String encode(String password) {
         return passwordEncoder.encode(password);
-    }
-
-    public boolean validates(String rawPassword, String encodedPassword) {
-        return passwordEncoder.matches(rawPassword, encodedPassword);
     }
 }
